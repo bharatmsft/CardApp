@@ -11,18 +11,31 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.toy.cardapp.viewmodel.WeatherViewModel
 
-@Preview
 @Composable
-internal fun WeatherCard(viewModel: WeatherViewModel = WeatherViewModel()) {
+internal fun WeatherCard(viewModel: WeatherViewModel) {
     val weatherState = viewModel.weather.collectAsState()
     val context = LocalContext.current
+    WeatherCard(
+        forecast = weatherState.value.forecast.name,
+        humidity = weatherState.value.humidity,
+        onClick = { makeToast(context, "weather card clicked") }
+    )
+}
+
+@Preview
+@Composable
+internal fun WeatherCard(
+    forecast: String = "",
+    humidity: Int = 0,
+    onClick: () -> Unit = {}
+) {
     GlobalCard(
         modifier = Modifier
             .fillMaxSize()
             .padding(10.dp),
-        onClick = { makeToast(context, "weather card clicked") }
+        onClick = onClick
     ) {
-        Text(text = "forecast: ${weatherState.value.forecast}")
-        Text(text = "humidity: ${weatherState.value.humidity}")
+        Text(text = "forecast: $forecast")
+        Text(text = "humidity: $humidity")
     }
 }

@@ -9,23 +9,27 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.toy.cardapp.viewmodel.TimeViewModel
+import com.toy.cardapp.viewmodel.CentralCardViewModel
 
 @Composable
-internal fun TimeCard(viewModel: TimeViewModel) {
-    val timeState = viewModel.time.collectAsState()
+internal fun CentralCard(viewModel: CentralCardViewModel) {
+    val state = viewModel.centralState.collectAsState()
     val context = LocalContext.current
-    TimeCard(
-        timeInMillis = timeState.value.timeInMillis,
-        onClick = { makeToast(context, "time card clicked") }
+    CentralCard(
+        newsTitle = state.value.newsTitle,
+        timeInMillis = state.value.time,
+        humidity = state.value.humidity,
+        onClick = { makeToast(context, "central card clicked") }
     )
 }
 
 @Preview
 @Composable
-internal fun TimeCard(
+fun CentralCard(
+    newsTitle: String = "",
     timeInMillis: Long = 0L,
-    onClick : () -> Unit = {}
+    humidity: Int = 0,
+    onClick: () -> Unit = {}
 ) {
     GlobalCard(
         modifier = Modifier
@@ -33,6 +37,8 @@ internal fun TimeCard(
             .padding(10.dp),
         onClick = onClick
     ) {
-        Text(text = "time in ms: $timeInMillis")
+        Text("title: $newsTitle")
+        Text("time in ms: $timeInMillis")
+        Text("humidity: $humidity")
     }
 }

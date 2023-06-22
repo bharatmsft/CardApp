@@ -1,5 +1,9 @@
 package com.toy.cardapp.viewmodel
 
-internal class DashboardViewModel {
+import com.toy.cardapp.repository.interfaces.IDashboardRepository
+
+internal class DashboardViewModel(
+    private val dashboardRepository: IDashboardRepository
+) {
 
 }
