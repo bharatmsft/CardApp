@@ -9,7 +9,7 @@ interface ICentralCardRepository {
     val centralState: StateFlow<CentralState>
     suspend fun updateCentralState(
         scope: CoroutineScope,
-       sharingMode: SharingStarted,
-       default: CentralState
+        sharingMode: SharingStarted,
+        default: CentralState
     )
 }

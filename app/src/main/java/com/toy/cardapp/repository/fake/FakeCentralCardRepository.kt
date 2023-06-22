@@ -25,8 +25,8 @@ internal class FakeCentralCardRepository(
         sharingMode: SharingStarted,
         default: CentralState
     ) {
-        _centralState = combine(newsRepository.news, timeRepository.time, weatherRepository.weather) { news, time, weather ->
-            CentralState(
+         _centralState = combine(newsRepository.news, timeRepository.time, weatherRepository.weather) { news, time, weather ->
+             CentralState(
                 newsTitle = news.title,
                 time = time.timeInMillis,
                 humidity = weather.humidity

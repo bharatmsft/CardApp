@@ -13,10 +13,10 @@ class FakeFeaturesRepository : IFeaturesRepository {
 
     override suspend fun fetchAvailableFeatures(): List<Feature> {
         val list = listOf(
-            Feature(FeaturesType.NEWS.name, true, Random.nextInt(0, 10)),
-            Feature(FeaturesType.TIME.name, true, Random.nextInt(0, 10)),
-            Feature(FeaturesType.WEATHER.name, true, Random.nextInt(0, 10)),
-            Feature(FeaturesType.TODO.name, false, Random.nextInt(0, 10))
+            Feature(FeaturesType.NEWS.name, true, 3),
+            Feature(FeaturesType.TIME.name, true, 7),
+            Feature(FeaturesType.WEATHER.name, true, 0),
+            Feature(FeaturesType.TODO.name, false, 14)
         )
         _features.value = rearrangeFeatures { rearrangeByOrder(list) }
         return features.value
