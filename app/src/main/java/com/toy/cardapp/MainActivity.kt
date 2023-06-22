@@ -43,7 +43,10 @@ class MainActivity : ComponentActivity() {
                 columns = GridCells.Fixed(2)
             ) {
                 // get this as an ordered list
-                item(span = { GridItemSpan(maxLineSpan) }) { Box(modifier = Modifier.height(150.dp)) { CentralCard(CentralCardViewModel(centralCardRepository)) } }
+                item(span = { GridItemSpan(maxLineSpan) }) { Box(modifier = Modifier.height(150.dp)) {
+                        CentralCard(CentralCardViewModel(newsRepository, weatherRepository, timeRepository, centralCardRepository))
+                    }
+                }
                 FeatureViewModel(FakeFeaturesRepository()).features.value.forEach { feature ->
                     when (feature.name) {
                         FeaturesType.NEWS.name -> item { Box(modifier = Modifier.height(150.dp)) { NewsCard(NewsViewModel(newsRepository)) } }

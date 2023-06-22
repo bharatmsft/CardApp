@@ -13,12 +13,14 @@ import com.toy.cardapp.viewmodel.CentralCardViewModel
 
 @Composable
 internal fun CentralCard(viewModel: CentralCardViewModel) {
-    val state = viewModel.centralState.collectAsState()
+    val news = viewModel.news.collectAsState()
+    val weather = viewModel.weather.collectAsState()
+    val time = viewModel.timeInMillis.collectAsState()
     val context = LocalContext.current
     CentralCard(
-        newsTitle = state.value.newsTitle,
-        timeInMillis = state.value.time,
-        humidity = state.value.humidity,
+        newsTitle = news.value.title,
+        timeInMillis = time.value.timeInMillis,
+        humidity = weather.value.humidity,
         onClick = { makeToast(context, "central card clicked") }
     )
 }
